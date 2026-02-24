@@ -13,6 +13,14 @@ from app.repository import FileRepository
 from app.signing import URLSigner
 from app.storage import LocalPrivateStorage
 
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"status": "ok", "service": "secure-file-service"}
+
 
 def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings or get_settings()
